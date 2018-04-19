@@ -1,10 +1,11 @@
 {% extends "layout.html" %} 
 
 {% block body %}
-<h1>
 
-  {% if name %} {{name}} {% else %} lista klijenata (linkova do njihovih konfiguracija) {% endif %}
-
+<h1>Lista klijenata </h1>
+  {% for client in clients %}
+  <h3> Tip klijenta: <a href="/{{ client['client'] }}"> {{ client['client'] }} </a> </h3>
+  {% endfor %}
 </h1>
 {% endblock%}
     
