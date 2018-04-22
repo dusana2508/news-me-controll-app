@@ -1,0 +1,34 @@
+{% extends "layout.html" %} 
+
+{% block body %}
+
+
+<pre>
+      <code>
+        <h3> Trenutna konfiguracija klijenta: </h3>
+        <table>
+          <tr>
+            <th>
+              Naziv konfiguracije
+            </th>
+            <th>
+              Trenutna vrednost
+            </th>
+          </tr>
+        {% for key in oneClientConfig %}
+            <tr>
+              <td>  
+                {{ key }}
+              </td>
+              <td>
+                 {{ oneClientConfig[key] }}
+              </td>
+            </tr>
+            
+           {% endfor %}
+        </table>     
+      </code>
+    </pre>
+            
+{% endblock %}
+    

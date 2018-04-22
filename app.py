@@ -17,9 +17,13 @@ def getMeCofiguration():
     return render_template('configuration.html', clients = config)
  
 
-@app.route('/configuration')
-def configurationWithOutClient():
-    return render_template('configuration.html')
+@app.route('/configuration/<client>')
+def getMeClientCofiguration(client):
+  for typeClient in config:
+    if typeClient['client'] == client:
+      return render_template('clientconfig.html', oneClientConfig = typeClient)
+
+  return 'ok'
 
 @app.route('/users')
 def getMeUsers():
