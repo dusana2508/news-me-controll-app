@@ -6,27 +6,32 @@
 <pre>
       <code>
         <h3> Trenutna konfiguracija klijenta: </h3>
-        <table>
-          <tr>
-            <th>
-              Naziv konfiguracije
-            </th>
-            <th>
-              Trenutna vrednost
-            </th>
-          </tr>
-        {% for key in oneClientConfig %}
-            <tr>
-              <td>  
-                {{ key }}
-              </td>
-              <td>
-                 {{ oneClientConfig[key] }}
-              </td>
-            </tr>
-            
-           {% endfor %}
-        </table>     
+      <form action="" method="POST">
+        {% for trenutnoKonfiguracijskoPolje in data['konfiguracijaIzabranogKlijenta'] %}
+          {{ data.postaviTrenutnuKonfiguracijskuVrednost(data['konfiguracijaIzabranogKlijenta'][trenutnoKonfiguracijskoPolje]) }}
+         
+        <h4>
+          {{trenutnoKonfiguracijskoPolje}}
+        </h4>
+        <select name="{{trenutnoKonfiguracijskoPolje}}">
+          <option value="{{data['konfiguracijaIzabranogKlijenta'][trenutnoKonfiguracijskoPolje]}}">
+            {{data['konfiguracijaIzabranogKlijenta'][trenutnoKonfiguracijskoPolje]}}
+          </option>
+         
+          {% for opcijaIzNizaOpcija in data['moguceOpcije'][trenutnoKonfiguracijskoPolje]  %}
+              {% if opcijaIzNizaOpcija != data.uzmiTrenutnuVrednostKonfiguracijeIzMemorije() %}
+
+              <!-- Zelimo da ispisemo vrednost opcije samo ukoliko ona nije ista kao opcija koja je u trenutnoj konfiguraciji a koju smo sacuvali preko funkcije postaviTrenutnuKonfiguracijskuVrednost -->
+
+                <option value="{{opcijaIzNizaOpcija}}">
+                  {{opcijaIzNizaOpcija}}
+                </option>
+              {% endif %}
+          {% endfor %}
+        </select>
+        {% endfor %}
+        <input type="submit" value="Sacuvaj konfiguraciju">
+      </form> 
       </code>
     </pre>
             

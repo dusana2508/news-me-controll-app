@@ -4,7 +4,7 @@
 
 <h1>Lista klijenata </h1>
   {% for client in clients %}
-  <h3> Tip klijenta: <a href="/{{ client['client'] }}"> {{ client['client'] }} </a> </h3>
+  <h3> Tip klijenta: <a href="/client/{{ client['client'] }}"> {{ client['client'] }} </a> </h3>
   {% endfor %}
 </h1>
 {% endblock%}
