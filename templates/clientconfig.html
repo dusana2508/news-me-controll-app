@@ -1,39 +1,41 @@
-{% extends "layout.html" %} 
+{% extends "layout.html" %}
 
 {% block body %}
+  <div class="container-fluid">
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-10">Current Client Configuration</h1>
+        <p class="lead">Here you can customize configuration of a single client</p>
+    </div>
 
-
-<pre>
-      <code>
-        <h3> Trenutna konfiguracija klijenta: </h3>
+    <div class="container">
       <form action="" method="POST">
         {% for trenutnoKonfiguracijskoPolje in data['konfiguracijaIzabranogKlijenta'] %}
           {{ data.postaviTrenutnuKonfiguracijskuVrednost(data['konfiguracijaIzabranogKlijenta'][trenutnoKonfiguracijskoPolje]) }}
-         
-        <h4>
-          {{trenutnoKonfiguracijskoPolje}}
-        </h4>
-        <select name="{{trenutnoKonfiguracijskoPolje}}">
-          <option value="{{data['konfiguracijaIzabranogKlijenta'][trenutnoKonfiguracijskoPolje]}}">
-            {{data['konfiguracijaIzabranogKlijenta'][trenutnoKonfiguracijskoPolje]}}
-          </option>
-         
-          {% for opcijaIzNizaOpcija in data['moguceOpcije'][trenutnoKonfiguracijskoPolje]  %}
-              {% if opcijaIzNizaOpcija != data.uzmiTrenutnuVrednostKonfiguracijeIzMemorije() %}
+          <div class="form-group row">
+            <label for="{{ trenutnoKonfiguracijskoPolje }}" class="col-md">{{ trenutnoKonfiguracijskoPolje }}</label>
+            <select class="form-control col-md" id="{{ trenutnoKonfiguracijskoPolje }}" name="{{trenutnoKonfiguracijskoPolje}}">
+              <option value="{{data['konfiguracijaIzabranogKlijenta'][trenutnoKonfiguracijskoPolje]}}">
+                {{data['konfiguracijaIzabranogKlijenta'][trenutnoKonfiguracijskoPolje]}}
+              </option>
+              {% for opcijaIzNizaOpcija in data['moguceOpcije'][trenutnoKonfiguracijskoPolje]  %}
+                  {% if opcijaIzNizaOpcija != data.uzmiTrenutnuVrednostKonfiguracijeIzMemorije() %}
 
-              <!-- Zelimo da ispisemo vrednost opcije samo ukoliko ona nije ista kao opcija koja je u trenutnoj konfiguraciji a koju smo sacuvali preko funkcije postaviTrenutnuKonfiguracijskuVrednost -->
+                  <!-- Zelimo da ispisemo vrednost opcije samo ukoliko ona nije ista kao opcija koja je u trenutnoj konfiguraciji a koju smo sacuvali preko funkcije postaviTrenutnuKonfiguracijskuVrednost -->
 
-                <option value="{{opcijaIzNizaOpcija}}">
-                  {{opcijaIzNizaOpcija}}
-                </option>
-              {% endif %}
-          {% endfor %}
-        </select>
+                    <option value="{{opcijaIzNizaOpcija}}">
+                      {{opcijaIzNizaOpcija}}
+                    </option>
+                  {% endif %}
+              {% endfor %}
+            </select>
+          </div>
+          <hr>
         {% endfor %}
-        <input type="submit" value="Sacuvaj konfiguraciju">
-      </form> 
-      </code>
-    </pre>
-            
+      <hr>
+      <button type="submit" class="btn btn-primary">Sacuvaj Konfiguraciju</button>
+      </form>
+      <br><br>
+    </div>
+  </div>
+
 {% endblock %}
-    

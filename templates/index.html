@@ -1,7 +1,15 @@
 {% extends "layout.html" %}
 
 {% block body %}
-    <h1>
-      Dobro dosli u kontrolnu aplikaciju
-    </h1>
+    <main role="main" class="inner cover">
+        <h1 class="cover-heading">Welcome</h1>
+        <p class="lead">This is a controll app for all instances of news-me projects, here you can configurate all clients (web, desktop, or mobile) and also see basic user stats with power to ban some user from all our apps</p>
+        <p class="lead">
+          <a href="/configurations" class="btn btn-lg btn-secondary main">Configurations</a>
+          <a href="/users" class="btn btn-lg btn-secondary main">Users</a>
+        </p>
+      </main>
  {% endblock%}
+
+
+

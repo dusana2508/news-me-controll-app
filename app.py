@@ -30,12 +30,12 @@ def uzmiTrenutnuVrednostKonfiguracijeIzMemorije ():
 def homepage():
   return render_template('index.html')
 
-@app.route('/configuration')
+@app.route('/configurations')
 def getMeCofiguration():
-    return render_template('configuration.html', clients = config)
- 
+    return render_template('configuration.html', clients = trenutneKonfiguracijeAplikacija)
 
-@app.route('/configuration/<nazivKlijenta>', methods = ['GET', 'POST'])
+
+@app.route('/configurations/<nazivKlijenta>', methods = ['GET', 'POST'])
 def getMeClientCofiguration(nazivKlijenta):
   if request.method == 'POST':
     requestBody = request.form.to_dict()
@@ -46,13 +46,13 @@ def getMeClientCofiguration(nazivKlijenta):
     if trenutnaKonfiguracija['client'] == nazivKlijenta:
       # Ako je imeKlijenta u url-u isto kao vrednost polja clijent u trnutnoj konfiguraciji u for petlji
       data = {
-        'konfiguracijaIzabranogKlijenta': trenutnaKonfiguracija, 
+        'konfiguracijaIzabranogKlijenta': trenutnaKonfiguracija,
         'moguceOpcije': moguceOpcijeZaSvakoPoljeKofiguracijeJednogKlijenta,
         'postaviTrenutnuKonfiguracijskuVrednost': sacuvajTrenutnuVrednostKonfiguracijeUMemoriji,
         'uzmiTrenutnuVrednostKonfiguracijeIzMemorije': uzmiTrenutnuVrednostKonfiguracijeIzMemorije
       }
- 
-     
+
+
   return render_template('clientconfig.html', data = data)
 
 

@@ -1,12 +1,26 @@
-{% extends "layout.html" %} 
+{% extends "layout.html" %}
 
 {% block body %}
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">Client List (Applications)</h1>
+        <p class="lead">Here you can customize all of our apps. To customize, choose clietn from list</p>
+    </div>
 
-<h1>Lista klijenata </h1>
-  {% for client in clients %}
-  <h3> Tip klijenta: <a href="/client/{{ client['client'] }}"> {{ client['client'] }} </a> </h3>
-  {% endfor %}
-</h1>
+    <div class="container">
+    {% for client in clients %}
+        <div class="card-deck mb-3 text-center">
+            <div class="card mb-4 box-shadow">
+              <div class="card-header">
+                <h4 class="my-0 font-weight-normal">{{ client['client'] }}</h4>
+              </div>
+              <div class="card-body">
+                <p>Here you can edit {{ client['client'] }} app configuration</p>
+                <a href="/configurations/{{ client['client'] }}" type="button" class="btn btn-lg btn-block btn-outline-primary">customize</a>
+              </div>
+            </div>
+        </div>
+    {% endfor %}
+   </div>
 {% endblock%}
-    
-  
+
+
