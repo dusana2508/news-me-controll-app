@@ -9,10 +9,12 @@ def dovuciPodatkeSaResta():
   global odgovorSaServera
   global moguceOpcijeZaSvakoPoljeKofiguracijeJednogKlijenta
   global trenutneKonfiguracijeAplikacija
-
+  global sviKorisniciSaResta
   odgovorSaServera = requests.get('http://api-news-me.ml/configurations-with-options').json()
   trenutneKonfiguracijeAplikacija = odgovorSaServera['currentConfigurations']
   moguceOpcijeZaSvakoPoljeKofiguracijeJednogKlijenta = odgovorSaServera['configurationOptions']
+
+  sviKorisniciSaResta = requests.get('http://api-news-me.ml/controll-app-get-all-users').json()
 
 dovuciPodatkeSaResta()
 
@@ -56,9 +58,11 @@ def getMeClientCofiguration(nazivKlijenta):
   return render_template('clientconfig.html', data = data)
 
 
+
+
 @app.route('/users')
-def getMeUsers():
-  return render_template('users.html')
+def listaKorisnika():
+  return render_template('korisnici.html', lista = sviKorisniciSaResta)
 
 app.debug = True
 app.run()

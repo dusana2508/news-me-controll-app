@@ -1,0 +1,12 @@
+{% extends "layout.html" %} 
+
+{% block body %}
+<h1>
+   Lista korisnika
+</h1>
+    {% for korisnika in lista %}
+        <h3> Username: 
+         <a href="/users/{{ korisnika['_id'] }}"> {{ korisnika['userName'] }} </a>
+        </h3>
+    {% endfor %}
+{% endblock %} 
