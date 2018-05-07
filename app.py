@@ -64,5 +64,23 @@ def getMeClientCofiguration(nazivKlijenta):
 def listaKorisnika():
   return render_template('korisnici.html', lista = sviKorisniciSaResta)
 
+@app.route('/users/<id>')
+def pojedinacniKorisnik(id):
+  korisnik = {}
+  for jedanKorisnik in sviKorisniciSaResta:
+    if jedanKorisnik['_id']== id:
+      korisnik['username:'] = jedanKorisnik['userName']
+      korisnik['email:'] = jedanKorisnik['email']
+      korisnik['birthyear:'] = jedanKorisnik['birthyear']
+      korisnik['registered:'] = jedanKorisnik['registeredAt']
+      korisnik['visited news:'] = jedanKorisnik['visitedNews']
+      korisnik['liked news:'] = jedanKorisnik['likedNews']
+      korisnik['subscribed for themes:'] = jedanKorisnik['subscribedForThemes']
+  return render_template('podaciokorisniku.html', korisnik = korisnik )
+
+
+
+  
+
 app.debug = True
 app.run()

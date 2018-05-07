@@ -1,0 +1,10 @@
+{% extends "layout.html" %} 
+
+{% block body %}
+<h1>
+   Podaci o korisniku
+</h1>
+    {% for kljuc in korisnik %}
+        <h4>{{kljuc}} {{korisnik[kljuc]}}</h4>
+    {% endfor %}
+{% endblock %} 
