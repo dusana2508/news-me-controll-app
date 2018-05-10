@@ -7,6 +7,16 @@
     {% for korisnika in lista %}
         <h3> Username: 
          <a href="/users/{{ korisnika['_id'] }}"> {{ korisnika['userName'] }} </a>
+         <form action = "" method="POST">
+             <input type="hidden" value="{{korisnika['_id']}}" name = "userId" >
+             <input type="hidden" value= "banOrUnban" name = "action">
+             {% if korisnika["isBanned"] %}
+                    <input type="submit" value="ALLOW">
+             {% else %}
+                    <input type="submit" value="BAN">
+             {% endif %}
+         </form>
+
         </h3>
     {% endfor %}
 {% endblock %} 

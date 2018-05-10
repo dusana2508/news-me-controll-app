@@ -60,8 +60,12 @@ def getMeClientCofiguration(nazivKlijenta):
 
 
 
-@app.route('/users')
+@app.route('/users', methods = ['GET', 'POST'])
 def listaKorisnika():
+  if request.method == "POST":
+    requestBody = request.form.to_dict()
+    r = requests.post("http://api-news-me.ml/controll-app-ban-or-unban-user", requestBody ).json() 
+    dovuciPodatkeSaResta() 
   return render_template('korisnici.html', lista = sviKorisniciSaResta)
 
 @app.route('/users/<id>')
@@ -76,8 +80,9 @@ def pojedinacniKorisnik(id):
       korisnik['visited news:'] = jedanKorisnik['visitedNews']
       korisnik['liked news:'] = jedanKorisnik['likedNews']
       korisnik['subscribed for themes:'] = jedanKorisnik['subscribedForThemes']
+      korisnik['isBanned'] = jedanKorisnik['isBanned']
   return render_template('podaciokorisniku.html', korisnik = korisnik )
-
+  
 
 
   
